@@ -37,7 +37,7 @@ abstract class AbstractSpotlight extends Component
         }
 
         if ($command instanceof ExecutableCommand) {
-            $command->execute();
+            $command->execute($this);
         }
 
         if ($command instanceof RenderableCommand) {
