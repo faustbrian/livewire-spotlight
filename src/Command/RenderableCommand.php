@@ -6,5 +6,5 @@ namespace BombenProdukt\Spotlight\Command;
 
 interface RenderableCommand extends Command
 {
-    public function render(string $searchQuery): string;
+    public function render(string $searchQuery, array $parameters): string;
 }

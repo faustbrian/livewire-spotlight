@@ -8,5 +8,5 @@ use Livewire\Component;
 
 interface ExecutableCommand extends Command
 {
-    public function execute(Component $component): void;
+    public function execute(Component $component, array $parameters): void;
 }

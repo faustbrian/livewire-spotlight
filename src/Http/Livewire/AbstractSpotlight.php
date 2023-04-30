@@ -22,6 +22,8 @@ abstract class AbstractSpotlight extends Component
 
     public string $commandId = '';
 
+    public array $commandState = [];
+
     public function render(): View
     {
         $commands = $this->commands->map->toArray()->toArray();
@@ -37,7 +39,7 @@ abstract class AbstractSpotlight extends Component
         }
 
         return view('livewire-spotlight::modal', [
-            'command' => $this->getCommandById($this->commandId)?->render($this->searchQuery),
+            'command' => $this->getCommandById($this->commandId)?->render($this->searchQuery, $this->commandState),
             'commands' => $commands,
         ]);
     }
@@ -51,7 +53,7 @@ abstract class AbstractSpotlight extends Component
         }
 
         if ($command instanceof ExecutableCommand) {
-            $command->execute($this);
+            $command->execute($this, $this->commandState);
         }
 
         if ($command instanceof RenderableCommand) {
