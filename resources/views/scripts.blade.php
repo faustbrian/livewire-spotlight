@@ -13,19 +13,28 @@
                     }
                 });
             },
+            closeModal() {
+                if (this.$wire.get('commandId')) {
+                    this.$wire.set('commandId', '');
+
+                    return;
+                }
+
+                this.isOpen = false;
+            },
             toggleOpen() {
-                this.isOpen = !this.isOpen
+                this.isOpen = !this.isOpen;
 
                 if (!this.isOpen) {
                     return;
                 }
 
                 setTimeout(() => {
-                    this.$refs.input.focus()
+                    this.$refs.input.focus();
                 }, 100)
             },
             goToPrevious() {
-                this.selectedCommandIndex = Math.max(0, this.selectedCommandIndex - 1)
+                this.selectedCommandIndex = Math.max(0, this.selectedCommandIndex - 1);
 
                 this.$nextTick(() => {
                     this.toggleStateClasses();
@@ -33,9 +42,9 @@
             },
             goToNext() {
                 if (this.selectedCommandIndex + 1 > this.commands.length) {
-                    this.selectedCommandIndex = 0
+                    this.selectedCommandIndex = 0;
                 } else {
-                    this.selectedCommandIndex = Math.min(this.commands.length - 1, this.selectedCommandIndex + 1)
+                    this.selectedCommandIndex = Math.min(this.commands.length - 1, this.selectedCommandIndex + 1);
                 }
 
                 this.$nextTick(() => {
@@ -49,14 +58,14 @@
             },
             toggleStateClasses() {
                 for (const child of this.$refs.results.children) {
-                    child.classList.remove('bg-gray-100')
+                    child.classList.remove('bg-gray-100');
                 }
 
-                this.$refs.results.children[this.selectedCommandIndex].classList.add('bg-gray-100')
+                this.$refs.results.children[this.selectedCommandIndex].classList.add('bg-gray-100');
 
                 this.$refs.results.children[this.selectedCommandIndex].scrollIntoView({
                     block: 'nearest',
-                })
+                });
             }
         };
     };

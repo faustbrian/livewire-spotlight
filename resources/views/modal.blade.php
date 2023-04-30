@@ -3,8 +3,8 @@
         class="relative z-50"
         role="dialog"
         aria-modal="true"
-        @close.stop="isOpen = false"
-        @keydown.escape.window="isOpen = false"
+        @close.stop="closeModal()"
+        @keydown.escape.window="closeModal()"
         @keydown.window.prevent.cmd.k="toggleOpen()"
         @keydown.window.prevent.cmd.slash="toggleOpen()"
         @keydown.window.prevent.ctrl.k="toggleOpen()"
@@ -35,8 +35,8 @@
         <div class="fixed inset-0 z-10 overflow-y-auto p-4 sm:p-6 md:p-20">
             <div
                 class="mx-auto max-w-xl transform divide-y divide-gray-100 overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all"
-                @click.away="isOpen = false"
-                @close.stop="isOpen = false"
+                @click.away="closeModal()"
+                @close.stop="closeModal()"
                 x-show="isOpen"
                 x-transition:enter-end="transform opacity-100 scale-100"
                 x-transition:enter-start="transform opacity-0 scale-95"
