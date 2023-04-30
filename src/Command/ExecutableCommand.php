@@ -6,5 +6,5 @@ namespace BombenProdukt\Spotlight\Command;
 
 interface ExecutableCommand extends Command
 {
-    public function execute(): string;
+    public function execute(): void;
 }
