@@ -68,7 +68,7 @@
 
                 @if ($command)
                     {!! $command !!}
-                @elseif ($commands->isNotEmpty())
+                @elseif (count($commands) > 0)
                     <ul
                         class="max-h-96 scroll-py-3 overflow-y-auto p-3"
                         role="listbox"
@@ -79,24 +79,24 @@
                                 class="group flex cursor-default select-none rounded-xl p-3 hover:bg-gray-100"
                                 role="option"
                                 tabindex="-1"
-                                wire:key="{{ $command->getId() }}"
-                                wire:click="executeCommand('{{ $command->getId() }}')"
+                                wire:key="{{ $command['id'] }}"
+                                wire:click="executeCommand('{{ $command['id'] }}')"
                             >
                                 <div
-                                    class="bg-{{ $command->getIconColor() }}-500 flex h-10 w-10 flex-none items-center justify-center rounded-lg">
+                                    class="bg-{{ $command['iconColor'] }}-500 flex h-10 w-10 flex-none items-center justify-center rounded-lg">
                                     <x-dynamic-component
                                         class="h-6 w-6 text-white"
-                                        :component="$command->getIcon()"
+                                        :component="$command['icon']"
                                     />
                                 </div>
 
                                 <div class="ml-4 flex-auto">
                                     <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">
-                                        {{ $command->getName() }}
+                                        {{ $command['name'] }}
                                     </p>
 
                                     <p class="text-sm text-gray-500 group-hover:text-gray-700">
-                                        {{ $command->getDescription() }}
+                                        {{ $command['description'] }}
                                     </p>
                                 </div>
                             </li>

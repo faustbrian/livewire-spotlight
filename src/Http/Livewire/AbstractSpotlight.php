@@ -7,6 +7,7 @@ namespace BombenProdukt\Spotlight\Http\Livewire;
 use BombenProdukt\Spotlight\Command\Command;
 use BombenProdukt\Spotlight\Command\ExecutableCommand;
 use BombenProdukt\Spotlight\Command\RenderableCommand;
+use Fuse\Fuse;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Livewire\Component;
@@ -22,9 +23,17 @@ abstract class AbstractSpotlight extends Component
 
     public function render(): View
     {
+        $commands = $this->commands->map->toArray()->toArray();
+
+        if (!empty($this->searchQuery)) {
+            $commands = collect((new Fuse($this->commands->map->toArray()->toArray(), ['keys' => ['name', 'description']]))->search($this->searchQuery))
+                ->sortBy('refIndex')
+                ->pluck('item');
+        }
+
         return view('livewire-spotlight::modal', [
             'command' => $this->getCommandById($this->commandId)?->render($this->searchQuery),
-            'commands' => $this->commands->filter(fn (Command $command): bool => \mb_stripos($command->getName(), $this->searchQuery) !== false),
+            'commands' => $commands,
         ]);
     }
 

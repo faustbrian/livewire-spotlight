@@ -16,11 +16,6 @@ parameters:
 			path: src/Http/Livewire/AbstractSpotlight.php
 
 		-
-			message: "#^Parameter \\#1 \\$callback of method Illuminate\\\\Support\\\\Collection\\<\\(int\\|string\\),mixed\\>\\:\\:filter\\(\\) expects \\(callable\\(mixed, \\(int\\|string\\)\\)\\: bool\\)\\|null, Closure\\(BombenProdukt\\\\Spotlight\\\\Command\\\\Command\\)\\: bool given\\.$#"
-			count: 1
-			path: src/Http/Livewire/AbstractSpotlight.php
-
-		-
 			message: "#^Parameter \\#1 \\$callback of method Illuminate\\\\Support\\\\Collection\\<\\(int\\|string\\),mixed\\>\\:\\:first\\(\\) expects \\(callable\\(mixed, \\(int\\|string\\)\\)\\: bool\\)\\|null, Closure\\(BombenProdukt\\\\Spotlight\\\\Command\\\\Command\\)\\: bool given\\.$#"
 			count: 1
 			path: src/Http/Livewire/AbstractSpotlight.php
