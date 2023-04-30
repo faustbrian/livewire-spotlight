@@ -126,3 +126,7 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+    @include('livewire-spotlight::scripts')
+@endpush
