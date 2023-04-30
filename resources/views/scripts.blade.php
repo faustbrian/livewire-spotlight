@@ -14,6 +14,8 @@
                 });
             },
             closeModal() {
+                this.$wire.set('searchQuery', '');
+
                 if (this.$wire.get('commandId')) {
                     this.$wire.set('commandId', '');
 
@@ -21,6 +23,14 @@
                 }
 
                 this.isOpen = false;
+            },
+            forceCloseModal() {
+                this.isOpen = false;
+
+                setTimeout(() => {
+                    this.$wire.set('searchQuery', '');
+                    this.$wire.set('commandId', '');
+                }, 300);
             },
             toggleOpen() {
                 this.isOpen = !this.isOpen;
@@ -31,7 +41,7 @@
 
                 setTimeout(() => {
                     this.$refs.input.focus();
-                }, 100)
+                }, 100);
             },
             goToPrevious() {
                 this.selectedCommandIndex = Math.max(0, this.selectedCommandIndex - 1);

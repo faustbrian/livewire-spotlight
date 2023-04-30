@@ -36,8 +36,8 @@
             <div class="flex min-h-full items-center justify-center">
                 <div
                     class="mx-auto max-w-xl transform divide-y divide-gray-100 overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all"
-                    @click.away="closeModal()"
-                    @close.stop="closeModal()"
+                    @click.away="forceCloseModal()"
+                    @close.stop="forceCloseModal()"
                     x-show="isOpen"
                     x-transition:enter-end="transform opacity-100 scale-100"
                     x-transition:enter-start="transform opacity-0 scale-95"
