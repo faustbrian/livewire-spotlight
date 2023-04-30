@@ -16,5 +16,7 @@ interface Command
 
     public function getIconColor(): string;
 
+    public function getTags(): array;
+
     public function toArray(): array;
 }

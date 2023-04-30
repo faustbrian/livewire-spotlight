@@ -21,6 +21,13 @@ abstract class AbstractCommand implements Command, JsonSerializable
 
     abstract public function getIconColor(): string;
 
+    public function getTags(): array
+    {
+        return [
+            $this->getName(),
+        ];
+    }
+
     public function toArray(): array
     {
         return [
@@ -29,6 +36,7 @@ abstract class AbstractCommand implements Command, JsonSerializable
             'description' => $this->getDescription(),
             'icon' => $this->getIcon(),
             'iconColor' => $this->getIconColor(),
+            'tags' => $this->getTags(),
         ];
     }
 

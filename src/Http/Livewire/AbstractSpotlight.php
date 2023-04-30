@@ -9,6 +9,7 @@ use BombenProdukt\Spotlight\Command\ExecutableCommand;
 use BombenProdukt\Spotlight\Command\RenderableCommand;
 use Fuse\Fuse;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
@@ -26,9 +27,13 @@ abstract class AbstractSpotlight extends Component
         $commands = $this->commands->map->toArray()->toArray();
 
         if (!empty($this->searchQuery)) {
-            $commands = collect((new Fuse($this->commands->map->toArray()->toArray(), ['keys' => ['name', 'description']]))->search($this->searchQuery))
-                ->sortBy('refIndex')
-                ->pluck('item');
+            $commands = Arr::pluck(
+                (new Fuse(
+                    $commands,
+                    ['keys' => ['name', 'description', 'tags']],
+                ))->search($this->searchQuery),
+                'item',
+            );
         }
 
         return view('livewire-spotlight::modal', [
