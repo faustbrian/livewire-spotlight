@@ -79,7 +79,7 @@
                                 class="group flex cursor-default select-none rounded-xl p-3 hover:bg-gray-100"
                                 role="option"
                                 tabindex="-1"
-                                :wire:key="$command->getId()"
+                                wire:key="{{ $command->getId() }}"
                                 wire:click="executeCommand('{{ $command->getId() }}')"
                             >
                                 <div
