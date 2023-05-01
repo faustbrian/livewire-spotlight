@@ -11,12 +11,86 @@
         @keydown.window.prevent.ctrl.slash="toggleOpen()"
         @toggle-spotlight.window="toggleOpen()"
         x-cloak
-        x-data="Spotlight({
-            componentId: '{{ $this->id }}',
-            placeholder: '{{ trans('livewire-ui-spotlight::spotlight.placeholder') }}',
-            commands: @js($commands),
-            showResultsWithoutInput: '{{ config('livewire-ui-spotlight.show_results_without_input') }}',
-        })"
+        x-data="() => {
+            return {
+                commands: @js($commands),
+                selectedCommandIndex: -1,
+                isOpen: false,
+                init() {
+                    this.$watch('isOpen', value => {
+                        if (value === false) {
+                            setTimeout(() => {
+                                this.selectedCommandIndex = -1;
+                            }, 300);
+                        }
+                    });
+                },
+                closeModal() {
+                    this.$wire.set('searchQuery', '');
+
+                    if (this.$wire.get('commandId')) {
+                        this.$wire.set('commandId', '');
+
+                        return;
+                    }
+
+                    this.isOpen = false;
+                },
+                forceCloseModal() {
+                    this.isOpen = false;
+
+                    setTimeout(() => {
+                        this.$wire.set('searchQuery', '');
+                        this.$wire.set('commandId', '');
+                    }, 300);
+                },
+                toggleOpen() {
+                    this.isOpen = !this.isOpen;
+
+                    if (!this.isOpen) {
+                        return;
+                    }
+
+                    setTimeout(() => {
+                        this.$refs.input.focus();
+                    }, 100);
+                },
+                goToPrevious() {
+                    this.selectedCommandIndex = Math.max(0, this.selectedCommandIndex - 1);
+
+                    this.$nextTick(() => {
+                        this.toggleStateClasses();
+                    })
+                },
+                goToNext() {
+                    if (this.selectedCommandIndex + 1 > this.commands.length) {
+                        this.selectedCommandIndex = 0;
+                    } else {
+                        this.selectedCommandIndex = Math.min(this.commands.length - 1, this.selectedCommandIndex + 1);
+                    }
+
+                    this.$nextTick(() => {
+                        this.toggleStateClasses();
+                    })
+                },
+                executeCommand(id) {
+                    this.$wire.executeCommand(this.commands.find((command) => {
+                        return command.id === (id ? id : this.commands[this.selectedCommandIndex].id);
+                    }).id);
+                },
+                toggleStateClasses() {
+                    for (const child of this.$refs.results.children) {
+                        child.classList.remove('bg-gray-100');
+                    }
+
+                    this.$refs.results.children[this.selectedCommandIndex].classList.add('bg-gray-100');
+
+                    this.$refs.results.children[this.selectedCommandIndex].scrollIntoView({
+                        block: 'nearest',
+                    });
+                }
+            };
+        }"
         x-init="init()"
         x-show="isOpen"
     >
@@ -35,7 +109,7 @@
         <div class="fixed inset-0 z-10 overflow-y-auto p-4 sm:p-6 md:p-20">
             <div class="flex min-h-full items-center justify-center">
                 <div
-                    class="mx-auto max-w-xl transform divide-y divide-gray-100 overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all"
+                    class="mx-auto w-full max-w-2xl transform divide-y divide-gray-100 overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all"
                     @click.away="forceCloseModal()"
                     @close.stop="forceCloseModal()"
                     x-show="isOpen"
@@ -129,7 +203,3 @@
         </div>
     </div>
 </div>
-
-@push('scripts')
-    @include('livewire-spotlight::scripts')
-@endpush
