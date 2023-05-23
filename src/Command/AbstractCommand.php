@@ -13,14 +13,6 @@ abstract class AbstractCommand implements Command, JsonSerializable
         return \sha1(static::class);
     }
 
-    abstract public function getName(): string;
-
-    abstract public function getDescription(): string;
-
-    abstract public function getIcon(): string;
-
-    abstract public function getIconColor(): string;
-
     public function getTags(): array
     {
         return [
@@ -44,4 +36,12 @@ abstract class AbstractCommand implements Command, JsonSerializable
     {
         return $this->toArray();
     }
+
+    abstract public function getName(): string;
+
+    abstract public function getDescription(): string;
+
+    abstract public function getIcon(): string;
+
+    abstract public function getIconColor(): string;
 }
