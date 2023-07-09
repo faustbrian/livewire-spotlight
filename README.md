@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/BombenProdukt/livewire-spotlight/actions">
+    <a href="https://github.com/faustbrian/livewire-spotlight/actions">
         <img src="https://badge.sh/github/check-runs/BombenProdukt/livewire-spotlight" alt="Checks" />
     </a>
     <a href="https://packagist.org/packages/bombenprodukt/livewire-spotlight">
@@ -21,7 +21,7 @@
 
 ## About Livewire Spotlight
 
-This project was created by, and is maintained by [BombenProdukt](https://github.com/BombenProdukt), and is a package to bring Spotlight-like functionality into Laravel. Be sure to browse through the [changelog](CHANGELOG.md), [code of conduct](.github/CODE_OF_CONDUCT.md), [contribution guidelines](.github/CONTRIBUTING.md), [license](LICENSE), and [security policy](.github/SECURITY.md).
+This project was created by, and is maintained by [Brian Faust](https://github.com/faustbrian), and is a package to bring Spotlight-like functionality into Laravel. Be sure to browse through the [changelog](CHANGELOG.md), [code of conduct](.github/CODE_OF_CONDUCT.md), [contribution guidelines](.github/CONTRIBUTING.md), [license](LICENSE), and [security policy](.github/SECURITY.md).
 
 ## Installation
 
