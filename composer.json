@@ -19,7 +19,7 @@
         "php": "^8.2",
         "bombenprodukt/laravel-package-powerpack": "^1.0",
         "illuminate/contracts": "^10.0",
-        "livewire/livewire": "^2.12",
+        "livewire/livewire": "^3.0",
         "loilo/fuse": "^6.6"
     },
     "require-dev": {
