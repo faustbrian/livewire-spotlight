@@ -1,0 +1,26 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to an undefined method BombenProdukt\\\\Spotlight\\\\Command\\\\Command\\:\\:render\\(\\)\\.$#"
+			count: 1
+			path: src/Http/Livewire/AbstractSpotlight.php
+
+		-
+			message: "#^Construct empty\\(\\) is not allowed\\. Use more strict comparison\\.$#"
+			count: 1
+			path: src/Http/Livewire/AbstractSpotlight.php
+
+		-
+			message: "#^Method BombenProdukt\\\\Spotlight\\\\Http\\\\Livewire\\\\AbstractSpotlight\\:\\:getCommandById\\(\\) should return BombenProdukt\\\\Spotlight\\\\Command\\\\Command\\|null but returns mixed\\.$#"
+			count: 1
+			path: src/Http/Livewire/AbstractSpotlight.php
+
+		-
+			message: "#^Method BombenProdukt\\\\Spotlight\\\\Http\\\\Livewire\\\\AbstractSpotlight\\:\\:getCommandsProperty\\(\\) return type with generic class Illuminate\\\\Support\\\\Collection does not specify its types\\: TKey, TValue$#"
+			count: 1
+			path: src/Http/Livewire/AbstractSpotlight.php
+
+		-
+			message: "#^Parameter \\#1 \\$callback of method Illuminate\\\\Support\\\\Collection\\<\\(int\\|string\\),mixed\\>\\:\\:first\\(\\) expects \\(callable\\(mixed, int\\|string\\)\\: bool\\)\\|null, Closure\\(BombenProdukt\\\\Spotlight\\\\Command\\\\Command\\)\\: bool given\\.$#"
+			count: 1
+			path: src/Http/Livewire/AbstractSpotlight.php
